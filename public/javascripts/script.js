@@ -3,6 +3,7 @@ const socket = io()
 if(navigator.geolocation) {
     navigator.geolocation.watchPosition((position) => {
         const { latitude, longitude } = position.coords
+        console.log('Sending location:', { latitude, longitude });
         socket.emit("send-location", { latitude, longitude })
     },
     (error) => {
@@ -25,6 +26,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const marker = {}
 socket.on("received-location", (data) => {
     const { id, latitude, longitude } = data
+    console.log('Received location:', data);
     map.setView([latitude, longitude])
     if(marker[id]) {
         marker[id].setLatLng([latitude, longitude])

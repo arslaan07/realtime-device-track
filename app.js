@@ -10,11 +10,13 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 io.on("connection", (socket) => {
-    console.log(socket.id)
+    console.log('User connected:', socket.id);
     socket.on("send-location", (data) => {
+        console.log('Location received from', socket.id, data);
         io.emit("received-location", {id: socket.id, ...data})
     })
     socket.on("disconnect", () => {
+        console.log('User disconnected:', socket.id);
         io.emit("user-disconnected", socket.id)
     })
 })
