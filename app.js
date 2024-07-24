@@ -2,12 +2,13 @@ const express = require('express')
 const app = express()
 const http = require('http')
 const socket = require('socket.io')
+const path = require('path');
 
 const server = http.createServer(app)
 const io = socket(server)
 
 app.set('view engine', 'ejs')
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'))
 
 io.on("connection", (socket) => {
