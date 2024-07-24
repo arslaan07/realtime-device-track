@@ -1,3 +1,5 @@
+
+document.addEventListener("DOMContentLoaded", () => {
 const socket = io()
 
 if(navigator.geolocation) {
@@ -41,4 +43,6 @@ socket.on("user-disconnected", (id) => {
         map.removeLayer(marker[id])
         delete marker[id]
     }
+})
+
 })
