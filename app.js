@@ -9,7 +9,7 @@ const io = socket(server)
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 io.on("connection", (socket) => {
     console.log('User connected:', socket.id);
