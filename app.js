@@ -7,6 +7,7 @@ const server = http.createServer(app)
 const io = socket(server)
 
 app.set('view engine', 'ejs')
+app.set('views', './views');
 app.use(express.static('public'))
 
 io.on("connection", (socket) => {
